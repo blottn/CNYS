@@ -25,6 +25,8 @@ body {
   background: darkslategrey;
   padding: 5%;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 
 .box {
@@ -32,6 +34,7 @@ body {
   height: 350px;
   background: white;
   border-radius: 8px;
+  margin: 15px;
   display: flex;
   justify-content: space-around;
   align-items: center;
