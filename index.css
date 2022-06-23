@@ -24,6 +24,7 @@ body {
   display: flex;
   background: darkslategrey;
   padding: 5%;
+  justify-content: space-evenly;
 }
 
 .box {
@@ -48,6 +49,3 @@ form textarea {
   resize: none;
 }
 
-form textarea::selection {
-  border: none;
-}
