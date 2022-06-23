@@ -8,10 +8,10 @@ const heartbeatWindow = 3000;
 const heartbeatAllowedMisses = 3;
 
 console.log('connecting to wrmhole at:');
-console.log(`ws://wrm.blottn.ie${room}`);
+console.log(`wss://wrm.blottn.ie${room}`);
 
 // create WS
-let ws = new WebSocket("ws://wrm.blottn.ie" + room);
+let ws = new WebSocket("wss://wrm.blottn.ie" + room);
 ws.addEventListener('open', function (event) {
   ws.send(JSON.stringify({
     kind: 'join',
