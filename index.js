@@ -24,50 +24,34 @@ ws.addEventListener('open', function (event) {
 ws.addEventListener('message', async function (event) {
   let text = await event.data.text();
   let {kind, data} = JSON.parse(text);
-  if (kind === 'join') {
+  let {uid} = data;
+
+  if (kind === 'join' && !(uid in peers)) {
     ws.send(JSON.stringify({
-      kind: 'joinack',
+      kind: 'join',
       data: {
         uid: local_uid,
       }
     }));
 
-    let { uid } = data;
     createBox(uid);
-    peers[uid] = {
-      last: new Date().getTime(),
-      missed: 0,
-    };
   }
-  else if (kind === 'msg') {
-    let {delay, uid, content} = data;
+  if (kind === 'msg') {
+    let {delay, content} = data;
     if (!(uid in peers)) {
       createBox(uid);
-      peers[uid] = {
-        last: new Date().getTime(),
-        missed: 0,
-      };
     }
     setTimeout(() => {
       document.getElementById(`uid-${uid}`).value = content;
     }, delay);
-  } else if (kind === 'joinack') {
-    let { uid } = data;
-    createBox(uid);
-    peers[uid] = {
-      last: new Date().getTime(),
-      missed: 0,
-    };
-  } else if (kind === 'heartbeat') {
-    let { uid } = data;
-    console.log(`Received heartbet from ${uid}`);
-    peers[uid] = {
-     last: new Date().getTime(),
-     missed: 0,
-    }
+  }
+  peers[uid] = {
+    last: new Date().getTime(),
+    missed: 0,
   }
 });
 
+// Heartbeats
 const heartbeatInterval = 1000;
 let heartbeat = () => {
   ws.send(JSON.stringify({
@@ -94,6 +78,7 @@ let heartbeat = () => {
 }
 setTimeout(heartbeat, heartbeatInterval);
 
+// Setup event listeners
 window.addEventListener('load', () => {
   let input = document.getElementById('inputspace');
   input.addEventListener('input', (e) => {
