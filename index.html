@@ -3,6 +3,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="index.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@extra-wordnet.english/adjective-words.min@1.0.5/index.js"></script>
   <script src="index.js"></script>
 </head>
 <body>
@@ -12,8 +13,9 @@
     </div>
     <div id="boxes" class="boxes">
       <div class="box" id="template">
+        <h6 id="title">↓ Write here ↓</h6>
         <form>
-          <textarea id="inputspace" type="edittext" autofocus></textarea>
+          <textarea id="inputspace" type="edittext" class="editable" autofocus></textarea>
         </form>
       </div>
     </div>

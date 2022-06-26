@@ -38,17 +38,59 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-shadow: #222 0px 0px 5px;
 }
 
 .box form {
-  width: 90%;
+  width: 100%;
   height: 90%;
   margin: 0px;
 }
+
 form textarea {
   width: 100%;
   height: 100%;
   border: none;
   resize: none;
+  padding: 6px;
 }
 
+textarea.editable {
+  background: #eee;
+  border-radius: 3px;
+}
+
+textarea.uneditable {
+  border-radius: 3px;
+  margin: 1px;
+  background: #fafafa;
+}
+
+textarea.uneditable:focus {
+  outline: none;
+}
+
+textarea.uneditable:hover {
+  cursor: default;
+}
+
+
+#title {
+  align-self: center;
+}
+
+.client #title {
+  color: #7f03fc;
+}
+
+.client form {
+  border-radius: 3px;
+  background: radial-gradient(circle at top left, rgba(0,206,209,1) 0%, rgba(255,255,255,1) 65%);
+
+}

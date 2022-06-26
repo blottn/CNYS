@@ -24,6 +24,7 @@ const send = (obj) => {
   while (ws.readyState != 1) {}
   ws.send(JSON.stringify(obj));
 }
+
 ws.addEventListener('message', async function (event) {
   let text = await event.data.text();
   let {kind, data} = JSON.parse(text);
@@ -56,7 +57,7 @@ ws.addEventListener('message', async function (event) {
 
 // Heartbeats
 const heartbeatWindow = 3000;
-const heartbeatAllowedMisses = 3;
+const heartbeatAllowedMisses = 2;
 const heartbeatInterval = 1000;
 let heartbeat = () => {
   send({
@@ -101,8 +102,15 @@ window.addEventListener('load', () => {
 function createBox(uid) {
   let template = document.getElementById('template');
   let box = template.cloneNode(true);
+  box.className = "box client";
+  box.querySelector('#title').textContent = genName(uid);
   box.querySelector('#inputspace').id = `uid-${uid}`;
   box.querySelector(`#uid-${uid}`).setAttribute('readonly','');
+  box.querySelector(`#uid-${uid}`).className = "uneditable";
   let container = document.getElementById('boxes');
   container.appendChild(box);
+}
+
+function genName(id) {
+  return wordnet_english_adjective_words[id % wordnet_english_adjective_words.length];
 }
