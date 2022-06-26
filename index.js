@@ -114,3 +114,13 @@ function createBox(uid) {
 function genName(id) {
   return wordnet_english_adjective_words[id % wordnet_english_adjective_words.length];
 }
+
+function burger() {
+
+  let menu = document.querySelector(".menu");
+  if (menu.className.includes('menu-gone')) {
+    menu.className = 'menu';
+  } else {
+    menu.className = 'menu menu-gone';
+  }
+}

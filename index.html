@@ -9,15 +9,36 @@
 </head>
 <body>
   <div id="root" class="root">
-    <div id="nav" class="nav">
-      <h1 class="heading">C N Y S</h3>
+    <div class="menu menu-gone">
+      <button class="burger" type="button" onclick="burger()">🍔</button>
+      <div class="menu-content">
+        <div class="menu-content-top">
+          <h3>Settings</h1>
+          <hr />
+        </div>
+        <div class="settings">
+          <div class="settings-item">
+            <span class="settings-desc">Delay (seconds)</span>
+            <input type="text" id="delay" name="delay" placeholder="delay in seconds">
+          </div>
+          <div class="settings-item">
+            <span class="settings-desc">Bell me 🔔?</span>
+            <input type="checkbox" id="bell" name="bell"></input>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="boxes" class="boxes">
-      <div class="box" id="template">
-        <h6 id="title">↓ Write here ↓</h6>
-        <form>
-          <textarea id="inputspace" type="edittext" class="editable" autofocus></textarea>
-        </form>
+    <div class="content">
+      <div id="nav" class="nav">
+        <h1 class="heading">C N Y S</h3>
+      </div>
+      <div id="boxes" class="boxes">
+        <div class="box" id="template">
+          <h6 id="title">↓ Write here ↓</h6>
+          <form>
+            <textarea id="inputspace" type="edittext" class="editable" autofocus></textarea>
+          </form>
+        </div>
       </div>
     </div>
   </div>
