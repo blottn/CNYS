@@ -1,6 +1,9 @@
 let room = window.location.pathname;
 
 let local_uid = new Date().getTime(); // TODO use mac address or something + chrome tab
+//config
+let delay = 0;
+let bell = false;
 
 let peers = {};
 console.log('connecting to wrmhole at:');
@@ -37,7 +40,6 @@ ws.addEventListener('message', async function (event) {
         uid: local_uid,
       }
     });
-
     createBox(uid);
   }
   if (kind === 'msg') {
@@ -86,16 +88,27 @@ setTimeout(heartbeat, heartbeatInterval);
 
 // Setup event listeners
 window.addEventListener('load', () => {
+  console.log(document.getElementById('true-title'));
+  document.getElementById('true-title').textContent = genName(local_uid);
   let input = document.getElementById('inputspace');
   input.addEventListener('input', (e) => {
-  send({
+    send({
       kind: 'msg',
       data: {
-        delay: 0,
+        delay,
         uid: local_uid,
         content: e.target.value,
       }
     });
+  });
+
+  document.getElementById('delay')
+    .addEventListener('input', (e) => {
+    delay = parseInt(e.target.value);
+  });
+  document.getElementById('bell')
+    .addEventListener('change', (e) => {
+    bell = !bell;
   });
 });
 
@@ -116,11 +129,15 @@ function genName(id) {
 }
 
 function burger() {
-
   let menu = document.querySelector(".menu");
   if (menu.className.includes('menu-gone')) {
     menu.className = 'menu';
   } else {
     menu.className = 'menu menu-gone';
   }
+}
+
+function ringBell() {
+  const audio = new Audio();
+  audio.play();
 }
