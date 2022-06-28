@@ -88,7 +88,6 @@ setTimeout(heartbeat, heartbeatInterval);
 
 // Setup event listeners
 window.addEventListener('load', () => {
-  console.log(document.getElementById('true-title'));
   document.getElementById('true-title').textContent = genName(local_uid);
   let input = document.getElementById('inputspace');
   input.addEventListener('input', (e) => {
@@ -117,7 +116,9 @@ function createBox(uid) {
   let box = template.cloneNode(true);
   box.className = "box client";
   box.querySelector('#title').textContent = genName(uid);
-  box.querySelector('#inputspace').id = `uid-${uid}`;
+  let input = box.querySelector('#inputspace')
+  input.id = `uid-${uid}`;
+  input.value = '';
   box.querySelector(`#uid-${uid}`).setAttribute('readonly','');
   box.querySelector(`#uid-${uid}`).className = "uneditable";
   let container = document.getElementById('boxes');
